@@ -23,6 +23,6 @@ public class IndexControllerTest {
     @Test
     public void 메인페이지테스트() {
         String body = this.restTemplate.getForObject("/", String.class);
-        Assertions.assertThat(body).contains("스프링 부트로 시작하는 웹 서비스");
+        Assertions.assertThat(body).contains("스프링부트로 시작하는 웹서비스");
     }
 }
