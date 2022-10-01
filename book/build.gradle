@@ -4,6 +4,7 @@ plugins {
 	id 'java'
 }
 
+
 group = 'com.jojoldu'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
@@ -13,6 +14,7 @@ repositories {
 }
 
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-mustache'
 	implementation 'com.h2database:h2'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
