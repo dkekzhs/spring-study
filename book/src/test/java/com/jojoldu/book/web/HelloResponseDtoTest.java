@@ -1,6 +1,7 @@
 package com.jojoldu.book.web;
 
 
+import com.jojoldu.book.web.dto.HelloResponseDto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

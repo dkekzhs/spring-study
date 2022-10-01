@@ -1,4 +1,4 @@
-package com.jojoldu.book.web;
+package com.jojoldu.book.web.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
