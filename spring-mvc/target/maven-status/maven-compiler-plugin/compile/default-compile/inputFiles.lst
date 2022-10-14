@@ -1,5 +1,5 @@
-/Users/idongjae/spring-study/spring-mvc/src/main/java/Controller/Dao/BookDao.java
-/Users/idongjae/spring-study/spring-mvc/src/main/java/Controller/Book/BookController.java
-/Users/idongjae/spring-study/spring-mvc/src/main/java/Controller/Dao/BookServiceImpl.java
-/Users/idongjae/spring-study/spring-mvc/src/main/java/Controller/IndexController.java
-/Users/idongjae/spring-study/spring-mvc/src/main/java/Controller/Dao/BookService.java
+/Users/idongjae/spring-study/spring-mvc/src/main/java/project/Dao/BookDao.java
+/Users/idongjae/spring-study/spring-mvc/src/main/java/project/IndexController.java
+/Users/idongjae/spring-study/spring-mvc/src/main/java/project/Controller/BookController.java
+/Users/idongjae/spring-study/spring-mvc/src/main/java/project/Dao/BookService.java
+/Users/idongjae/spring-study/spring-mvc/src/main/java/project/Dao/BookServiceImpl.java

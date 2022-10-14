@@ -8,9 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>인덱스</title>
   </head>
   <body>
-  $END$
+  인덱스 파일입니다
+  <div>
+    <a href="/create"> 북 생성</a>
+  </div>
   </body>
 </html>
