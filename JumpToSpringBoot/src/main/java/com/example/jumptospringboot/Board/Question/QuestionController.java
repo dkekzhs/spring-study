@@ -6,13 +6,11 @@ import com.example.jumptospringboot.Board.Question.Domain.QuestionRepository;
 import com.example.jumptospringboot.Board.Question.Dto.QuestionRequestDto;
 import com.example.jumptospringboot.Board.Question.Service.QuestionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -24,9 +22,9 @@ public class QuestionController {
     private final QuestionService questionService;
 
     @RequestMapping("/list")
-    public String list(Model model){
-        List<Question> list = questionService.getList();
-        model.addAttribute("questionList", list);
+    public String list(Model model , @RequestParam(value = "page", defaultValue = "0")int page){
+        Page<Question> list = questionService.getList(page);
+        model.addAttribute("paging", list);
         return "question_list";
     }
 
@@ -52,5 +50,15 @@ public class QuestionController {
                 .content(questionRequestDto.getContent()).build();
         questionService.createQuestion(question);
         return "redirect:/question/list";
+    }
+
+    @GetMapping("/12345")
+    public void 문제생성(){
+        for (int i = 1; i <= 300; i++) {
+            String subject = String.format("테스트 데이터입니다:[%03d]", i);
+            String content = "내용무";
+            Question build = Question.builder().subject(subject).content(content).build();
+            this.questionService.createQuestion(build);
+        }
     }
 }

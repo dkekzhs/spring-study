@@ -26,4 +26,14 @@ public class QuestionServiceTest {
     public void 질문생성서비스(){
         questionService.createQuestion(Question.builder().subject("제목생성").content("문제생성").build());
     }
+    @Test
+    void testJpa() {
+        for (int i = 1; i <= 300; i++) {
+            String subject = String.format("테스트 데이터입니다:[%03d]", i);
+            String content = "내용무";
+            Question build = Question.builder().subject(subject).content(content).build();
+            this.questionService.createQuestion(build);
+        }
+}
+
 }
