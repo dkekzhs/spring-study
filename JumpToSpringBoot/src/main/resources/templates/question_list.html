@@ -3,12 +3,14 @@
 <table class="table">
     <thead class="table-dark">
     <tr>
+        <th>번호</th>
         <th>제목</th>
         <th>작성일시</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="question, loop : ${paging}">
+        <td th:text="${paging.getTotalElements - (paging.getNumber * paging.getSize) - loop.index}"></td>
         <td>
             <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
         </td>
