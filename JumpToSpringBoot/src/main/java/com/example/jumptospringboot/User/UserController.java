@@ -1,6 +1,6 @@
 package com.example.jumptospringboot.User;
 
-import com.example.jumptospringboot.User.Domain.User;
+import com.example.jumptospringboot.User.Domain.UserSite;
 import com.example.jumptospringboot.User.Dto.UserCreateRequestDto;
 import com.example.jumptospringboot.User.Service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -37,7 +37,7 @@ public class UserController {
             return "signup_form";
         }
         try{
-            User build = User.builder().password(passwordEncoder.encode(userCreateRequestDto.getPassword1()))
+            UserSite build = UserSite.builder().password(passwordEncoder.encode(userCreateRequestDto.getPassword1()))
                     .email(userCreateRequestDto.getEmail())
                     .username(userCreateRequestDto.getUsername()).build();
                 userService.CreateUser(build);
@@ -54,5 +54,10 @@ public class UserController {
         }
 
         return "redirect:/";
+    }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login_form";
     }
 }

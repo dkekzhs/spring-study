@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor
-public class User {
+public class UserSite {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,9 +23,10 @@ public class User {
     private String email;
 
     @Builder
-    public User(String username, String password, String email) {
+    public UserSite(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
     }
+
 }
