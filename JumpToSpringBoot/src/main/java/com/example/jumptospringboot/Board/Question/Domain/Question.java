@@ -2,6 +2,7 @@ package com.example.jumptospringboot.Board.Question.Domain;
 
 import com.example.jumptospringboot.Board.Answer.Domain.Answer;
 import com.example.jumptospringboot.Common.BaseEntity;
+import com.example.jumptospringboot.User.Domain.UserSite;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,6 +17,11 @@ public class Question extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    private UserSite author;
+
+
+
     @Column(length = 200)
     private String subject;
 
@@ -26,9 +32,10 @@ public class Question extends BaseEntity {
     private List<Answer> answerList;
 
     @Builder
-    public Question(String subject, String content) {
+    public Question(String subject, String content, UserSite author) {
         this.subject = subject;
         this.content = content;
+        this.author = author;
     }
 
     public void subjectUpdate(String subject) {

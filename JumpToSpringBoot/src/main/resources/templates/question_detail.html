@@ -1,4 +1,4 @@
-<th:block th:replace="~{fragment/config :: config}"></th:block>
+<th:block th:replace="~{fragment/config :: config}" xmlns:sec="http://www.w3.org/1999/xhtml"></th:block>
 <div class="container my-3">
     <h1 class="border-bottom py-2"  th:text="${question.subject}"></h1>
     <div class="card my-3" >
@@ -29,7 +29,8 @@
 
     <form th:action="@{|/answer/create/${question.id}|}" method="post" class="my-3" th:object="${answerRequestDto}">
         <div th:replace="fragment/form_errors :: formErrorsFragment"></div>
-        <textarea th:field="*{content}" class="form-control" name="content" id="content" rows="10"></textarea>
+        <textarea sec:authorize="isAnonymous()" disabled th:field="*{content}" class="form-control" rows="10"></textarea>
+        <textarea sec:authorize="isAuthenticated()" th:field="*{content}" class="form-control" rows="10"></textarea>
         <input class="btn btn-primary my-2" type="submit" value="답변등록">
     </form>
 </div>

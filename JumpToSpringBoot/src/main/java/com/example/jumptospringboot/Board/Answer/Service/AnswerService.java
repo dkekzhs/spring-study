@@ -3,6 +3,7 @@ package com.example.jumptospringboot.Board.Answer.Service;
 import com.example.jumptospringboot.Board.Answer.Domain.Answer;
 import com.example.jumptospringboot.Board.Answer.Domain.AnswerRepository;
 import com.example.jumptospringboot.Board.Question.Domain.Question;
+import com.example.jumptospringboot.User.Domain.UserSite;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +12,7 @@ import org.springframework.stereotype.Service;
 public class AnswerService {
     private final AnswerRepository answerRepository;
 
-    public void createAnswer(Question question,String content) {
-        Answer build = Answer.builder().question(question).content(content).build();
-        this.answerRepository.save(build);
+    public void createAnswer(Answer answer) {
+        this.answerRepository.save(answer);
     }
 }

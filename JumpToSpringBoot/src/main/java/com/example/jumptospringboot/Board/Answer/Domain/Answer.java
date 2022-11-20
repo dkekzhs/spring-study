@@ -2,6 +2,7 @@ package com.example.jumptospringboot.Board.Answer.Domain;
 
 import com.example.jumptospringboot.Board.Question.Domain.Question;
 import com.example.jumptospringboot.Common.BaseEntity;
+import com.example.jumptospringboot.User.Domain.UserSite;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,9 @@ public class Answer extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    private UserSite author;
+
     @Column
     private String content;
 
@@ -27,8 +31,9 @@ public class Answer extends BaseEntity {
     private Question question;
 
     @Builder
-    public Answer(String content, Question question) {
+    public Answer(String content, Question question, UserSite author) {
         this.content = content;
         this.question = question;
+        this.author = author;
     }
 }

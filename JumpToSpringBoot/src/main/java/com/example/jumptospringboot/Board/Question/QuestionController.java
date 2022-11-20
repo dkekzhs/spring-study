@@ -2,24 +2,28 @@ package com.example.jumptospringboot.Board.Question;
 
 import com.example.jumptospringboot.Board.Answer.Dto.AnswerRequestDto;
 import com.example.jumptospringboot.Board.Question.Domain.Question;
-import com.example.jumptospringboot.Board.Question.Domain.QuestionRepository;
 import com.example.jumptospringboot.Board.Question.Dto.QuestionRequestDto;
 import com.example.jumptospringboot.Board.Question.Service.QuestionService;
+import com.example.jumptospringboot.User.Domain.UserSite;
+import com.example.jumptospringboot.User.Service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
+import java.security.Principal;
+
 
 @RequiredArgsConstructor
 @Controller
 @RequestMapping("/question")
 public class QuestionController {
     private final QuestionService questionService;
+    private final UserService userService;
 
     @RequestMapping("/list")
     public String list(Model model , @RequestParam(value = "page", defaultValue = "0")int page){
@@ -36,18 +40,25 @@ public class QuestionController {
     }
 
     @RequestMapping("/create")
+    @PreAuthorize("isAuthenticated()")
     public String create_question_html(QuestionRequestDto questionRequestDto){
         return "question_create";
     }
 
     @PostMapping("/create")
-    public String create_question(@Valid QuestionRequestDto questionRequestDto, BindingResult bindingResult) {
+    @PreAuthorize("isAuthenticated()")
+    public String create_question(@Valid QuestionRequestDto questionRequestDto, BindingResult bindingResult
+    , Principal principal) {
         if(bindingResult.hasErrors()){
             return "question_create";
         }
+        UserSite user = this.userService.getUser(principal.getName());
         Question question = Question.builder()
                 .subject(questionRequestDto.getSubject())
-                .content(questionRequestDto.getContent()).build();
+                .content(questionRequestDto.getContent())
+                .author(user)
+                .build();
+
         questionService.createQuestion(question);
         return "redirect:/question/list";
     }
