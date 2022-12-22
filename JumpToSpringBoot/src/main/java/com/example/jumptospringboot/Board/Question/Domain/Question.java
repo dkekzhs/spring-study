@@ -7,6 +7,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -19,9 +20,6 @@ public class Question extends BaseEntity {
 
     @ManyToOne
     private UserSite author;
-
-
-
     @Column(length = 200)
     private String subject;
 
@@ -44,5 +42,9 @@ public class Question extends BaseEntity {
 
     public void addChild(List<Answer> answer) {
         this.answerList = answer;
+    }
+    public void modify(String subject , String content){
+        this.subject = subject;
+        this.content = content;
     }
 }
