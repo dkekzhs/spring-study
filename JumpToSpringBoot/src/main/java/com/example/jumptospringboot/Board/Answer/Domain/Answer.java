@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
+import java.util.Set;
 
 
 @Getter
@@ -29,6 +30,10 @@ public class Answer extends BaseEntity {
 
     @ManyToOne
     private Question question;
+
+    @ManyToMany
+    Set<UserSite> voter;
+
 
     @Builder
     public Answer(String content, Question question, UserSite author) {

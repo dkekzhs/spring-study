@@ -4,6 +4,7 @@ package com.example.jumptospringboot.Board.Question.Service;
 import com.example.jumptospringboot.Board.Question.Domain.Question;
 import com.example.jumptospringboot.Board.Question.Domain.QuestionRepository;
 import com.example.jumptospringboot.Common.Exception.DataNotFoundException;
+import com.example.jumptospringboot.User.Domain.UserSite;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -56,6 +57,11 @@ public class QuestionService {
         sorts.add(Sort.Order.desc("localDateTime"));
         Pageable pageable = PageRequest.of(page, 10,Sort.by(sorts));
         return questionRepository.findAll(pageable);
+    }
+
+    public void vote(Question question, UserSite userSite) {
+        question.getVoter().add(userSite);
+        questionRepository.save(question);
     }
 
 }

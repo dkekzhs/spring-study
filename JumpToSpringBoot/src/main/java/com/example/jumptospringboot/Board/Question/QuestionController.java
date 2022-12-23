@@ -77,7 +77,7 @@ public class QuestionController {
 
     @GetMapping("/modify/{id}")
     @PreAuthorize("isAuthenticated()")
-    public String update(QuestionRequestDto questionRequestDto, @PathVariable("id") Long id , Principal principal){
+    public String update(QuestionRequestDto questionRequestDto, @PathVariable("id") Long id, Principal principal) {
         Question question = this.questionService.getDetailQuestion(id);
         if (!question.getAuthor().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다");
@@ -90,8 +90,8 @@ public class QuestionController {
     @PostMapping("/modify/{id}")
     @PreAuthorize("isAuthenticated()")
     public String questionModify(@Valid QuestionRequestDto questionRequestDto, BindingResult bindingResult,
-                                 Principal principal, @PathVariable("id") Long id ){
-        if(bindingResult.hasErrors()){
+                                 Principal principal, @PathVariable("id") Long id) {
+        if (bindingResult.hasErrors()) {
             return "question_form";
         }
         Question question = questionService.getDetailQuestion(id);
@@ -104,12 +104,22 @@ public class QuestionController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/delete/{id}")
-    public String questionDelete(Principal principal, @PathVariable("id") Long id){
+    public String questionDelete(Principal principal, @PathVariable("id") Long id) {
         Question question = questionService.getDetailQuestion(id);
-        if(!question.getAuthor().getUsername().equals(principal.getName())){
+        if (!question.getAuthor().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제권한이 없습니다.");
         }
         questionService.deleteQuestion(question);
         return "redirect:/";
     }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/vote/{id}")
+    public String questionVote(Principal principal, @PathVariable("id") Long id) {
+        Question question = questionService.getDetailQuestion(id);
+        UserSite user = userService.getUser(principal.getName());
+        this.questionService.vote(question,user);
+        return String.format("redirect:/question/detail/%s", id);
+    }
+
 }

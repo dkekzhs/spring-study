@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -29,6 +30,9 @@ public class Question extends BaseEntity {
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Answer> answerList;
 
+    @ManyToMany
+    private Set<UserSite> voter;
+
     @Builder
     public Question(String subject, String content, UserSite author) {
         this.subject = subject;
@@ -47,4 +51,6 @@ public class Question extends BaseEntity {
         this.subject = subject;
         this.content = content;
     }
+
+
 }
