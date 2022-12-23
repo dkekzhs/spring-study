@@ -100,17 +100,7 @@ public class QuestionTest {
         }
     }
 
-    @Test
-    @Transactional
-    public void 질문에서_댓글(){
-        Optional<Question> byId = this.questionRepository.findById(1L);
-        if(byId.isPresent()){
-            Question question = byId.get();
-            List<Answer> answerList = question.getAnswerList();
-            Assertions.assertEquals(2,answerList.size());
-        }
 
-    }
 
 
 
