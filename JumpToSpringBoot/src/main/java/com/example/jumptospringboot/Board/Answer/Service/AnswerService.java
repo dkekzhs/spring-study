@@ -15,8 +15,9 @@ import java.util.Optional;
 public class AnswerService {
     private final AnswerRepository answerRepository;
 
-    public void createAnswer(Answer answer) {
+    public Answer createAnswer(Answer answer) {
         this.answerRepository.save(answer);
+        return answer;
     }
 
     public Answer getAnswer(Long id){

@@ -37,9 +37,10 @@ public class AnswerController {
             model.addAttribute("question", question);
             return "question_detail";
         }
-        Answer build = Answer.builder().question(question).author(user).content(answerRequestDto.getContent()).build();
-        this.answerService.createAnswer(build);
-        return String.format("redirect:/question/detail/%s", id);
+        Answer answer = Answer.builder().question(question).author(user).content(answerRequestDto.getContent()).build();
+        this.answerService.createAnswer(answer);
+        return String.format("redirect:/question/detail/%s#answer_%s",
+                answer.getQuestion().getId(), answer.getId());
     }
 
     @PreAuthorize("isAuthenticated()")
@@ -65,7 +66,8 @@ public class AnswerController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
         }
         answerService.modify(answer, answerRequestDto.getContent());
-        return String.format("redirect:/question/detail/%s", answer.getQuestion().getId());
+        return String.format("redirect:/question/detail/%s#answer_%s",
+                answer.getQuestion().getId(), answer.getId());
     }
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/delete/{id}")
@@ -75,7 +77,8 @@ public class AnswerController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제권한이 없습니다");
         }
         answerService.delete(answer);
-        return String.format("redirect:/question/detail/%s", answer.getQuestion().getId());
+        return String.format("redirect:/question/detail/%s#answer_%s",
+                answer.getQuestion().getId(), answer.getId());
     }
 
     @PreAuthorize("isAuthenticated()")
@@ -83,8 +86,9 @@ public class AnswerController {
     public String voteAnswer(Principal principal, @PathVariable("id") Long id) {
         Answer answer = answerService.getAnswer(id);
         UserSite user = userService.getUser(principal.getName());
-        this.answerService.vote(answer, user);
-        return String.format("redirect:/question/detail/%s", answer.getQuestion().getId());
+        this.answerService.vote(answer,user);
+        return String.format("redirect:/question/detail/%s#answer_%s",
+                answer.getQuestion().getId(), answer.getId());
     }
 
 }
