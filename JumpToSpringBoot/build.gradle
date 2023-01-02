@@ -29,9 +29,14 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-//    runtimeOnly 'com.h2database:h2'
-    implementation 'mysql:mysql-connector-java'
-    runtimeOnly 'mysql:mysql-connector-java'
+//    runtimeOnly 'com.h2database:h2' // H2
+//    runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc' // MSSQL
+//    runtimeOnly 'mysql:mysql-connector-java' // MYSQL
+//    runtimeOnly 'org.postgresql:postgresql' // PostgreSQL
+
+    implementation  "org.mariadb.jdbc:mariadb-java-client:2.1.2"
+//    implementation 'mysql:mysql-connector-java'
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
     //스프링 시큐리티
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
