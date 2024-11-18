@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: netty-real-time-excution-price
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:db;MODE=MYSQL
+    username: sa
+    password:
+  h2:
+    console:
+      path: /h2
+      enabled: true
+
+
+data:
+  port: 21000
+  host: ops.koreainvestment.com
