@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Map;
 import java.util.Optional;
 
+import static com.dongjae.skeleton_server.common.dto.BaseResponseStatus.NOT_FOUND_USER;
 import static com.dongjae.skeleton_server.common.dto.BaseResponseStatus.NOT_VERIFIED_GOOGLE_TOKEN;
 
 @Service
@@ -40,6 +41,11 @@ public class UserServiceImpl implements UserService{
         Optional<Member> memberByNameAndPassword = memberRepository.findMemberByNameAndPassword(map.get("userName"), map.get("userPassword"));
 
         return null;
+    }
+
+    @Override
+    public Member findById(int id) throws BaseException {
+        return memberRepository.findById(id).orElseThrow(() -> new BaseException(NOT_FOUND_USER));
     }
 
     private boolean verifyGoogleToken(String accessToken) {

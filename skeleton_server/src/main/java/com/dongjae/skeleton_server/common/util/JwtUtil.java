@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
@@ -12,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
+@RequiredArgsConstructor
 public class JwtUtil {
 
     private String secret = "194160a103f8b16f4e0ef95d32e9400f45a02da31f364fb4d35703b185fe9a63";
@@ -40,6 +42,11 @@ public class JwtUtil {
                 .expiration(new Date(System.currentTimeMillis() + expirationTime))
                 .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
+    }
+
+    public int validateAndGetMember(String token) {
+        Claims claims = extractAllClaims(token);
+        return Integer.parseInt(claims.getSubject());
     }
 
     // 토큰 유효성 검증
