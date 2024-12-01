@@ -6,7 +6,7 @@ import lombok.Getter;
 public enum BaseResponseStatus {
 
     SUCCESS(true, 1000, "요청에 성공하였습니다."),
-
+    NOT_VERIFIED_GOOGLE_TOKEN(true, 1001, "구글 토큰의 올바르지 않습니다"),
 
     OOPS(false, 5000, "Oops...");
 
