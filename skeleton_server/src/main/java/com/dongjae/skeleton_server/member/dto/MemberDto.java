@@ -1,4 +1,4 @@
-package com.dongjae.skeleton_server.user.dto;
+package com.dongjae.skeleton_server.member.dto;
 
 import lombok.Builder;
 import lombok.Getter;

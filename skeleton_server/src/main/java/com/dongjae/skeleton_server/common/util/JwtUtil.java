@@ -16,19 +16,17 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class JwtUtil {
 
-    private String secret = "194160a103f8b16f4e0ef95d32e9400f45a02da31f364fb4d35703b185fe9a63";
+    private String secret = "194160a103f8b16f4e0ef95d32e9400f45a02da31f364fb4d35703b185fe9aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa63";
     private SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes());
 
     private long accessTokenValidity = 1000 * 60 * 15;  // 15분
     private long refreshTokenValidity = 1000 * 60 * 60 * 24 * 7;  // 7일
 
-    // Access Token 생성
     public String generateAccessToken(String username) {
         Map<String, Object> claims = new HashMap<>();
         return createToken(claims, username, accessTokenValidity);
     }
 
-    // Refresh Token 생성
     public String generateRefreshToken(String username) {
         Map<String, Object> claims = new HashMap<>();
         return createToken(claims, username, refreshTokenValidity);

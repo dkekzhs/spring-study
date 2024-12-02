@@ -6,7 +6,8 @@ import lombok.Getter;
 public enum BaseResponseStatus {
 
     SUCCESS(true, 1000, "요청에 성공하였습니다."),
-    NOT_VERIFIED_GOOGLE_TOKEN(true, 1001, "구글 토큰의 올바르지 않습니다"),
+    NOT_VERIFIED_GOOGLE_TOKEN(true, 1001, "구글 토큰의 올바르지 않습니다."),
+    EXPIRES_ACCESS_TOKEN(true, 1002, "엑세스토큰이 만료되었습니다."),
     NOT_FOUND_USER(true, 1002, "유저를찾지 못했습니다"),
     OOPS(false, 5000, "Oops...");
 

@@ -1,34 +1,33 @@
-package com.dongjae.skeleton_server.user.service;
+package com.dongjae.skeleton_server.member.service;
 
 import com.dongjae.skeleton_server.common.exception.BaseException;
-import com.dongjae.skeleton_server.user.domain.Member;
-import com.dongjae.skeleton_server.user.dto.TokenRequest;
-import com.dongjae.skeleton_server.user.dto.TokenResponse;
-import com.dongjae.skeleton_server.user.repository.MemberRepository;
+import com.dongjae.skeleton_server.member.domain.Member;
+import com.dongjae.skeleton_server.member.dto.MemberDto;
+import com.dongjae.skeleton_server.member.dto.TokenRequest;
+import com.dongjae.skeleton_server.member.dto.TokenResponse;
+import com.dongjae.skeleton_server.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Map;
-import java.util.Optional;
 
-import static com.dongjae.skeleton_server.common.dto.BaseResponseStatus.NOT_FOUND_USER;
-import static com.dongjae.skeleton_server.common.dto.BaseResponseStatus.NOT_VERIFIED_GOOGLE_TOKEN;
+import static com.dongjae.skeleton_server.common.dto.BaseResponseStatus.*;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService{
+public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
     private final RestTemplate restTemplate;
 
     @Override
     public TokenResponse loginGoogle(TokenRequest tokenRequest) {
-        if (!verifyGoogleToken(tokenRequest.getAccess_token())) {
+        if (!verifyGoogleToken(tokenRequest.getAccessToken())) {
             throw new BaseException(NOT_VERIFIED_GOOGLE_TOKEN);
         }
-        Map<String, Object> value = fetchGoogleUserInfo(tokenRequest.getAccess_token());
+        Map<String, Object> value = fetchGoogleUserInfo(tokenRequest.getAccessToken());
 
         //find User ? -> token create : db insert and token create return;
 
@@ -37,10 +36,10 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public TokenResponse login(Map<String, String> map) {
-        Optional<Member> memberByNameAndPassword = memberRepository.findMemberByNameAndPassword(map.get("userName"), map.get("userPassword"));
-
-        return null;
+    public Member login(MemberDto memberDto) {
+        System.out.println(memberDto.getUserName());
+        System.out.println(memberDto.getUserPassword());
+        return memberRepository.findById(memberDto.getUserAge()).orElseThrow(() -> new BaseException(NOT_FOUND_USER));
     }
 
     @Override

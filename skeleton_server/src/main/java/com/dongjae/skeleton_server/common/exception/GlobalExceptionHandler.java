@@ -2,7 +2,6 @@ package com.dongjae.skeleton_server.common.exception;
 
 import com.dongjae.skeleton_server.common.dto.BaseResponse;
 import com.dongjae.skeleton_server.common.dto.BaseResponseStatus;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -22,4 +21,5 @@ public class GlobalExceptionHandler {
         log.warn("Exception: {}", e.getMessage());
         return new BaseResponse<>(BaseResponseStatus.OOPS);
     }
+
 }

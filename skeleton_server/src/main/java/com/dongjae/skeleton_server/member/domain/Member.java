@@ -1,6 +1,6 @@
-package com.dongjae.skeleton_server.user.domain;
+package com.dongjae.skeleton_server.member.domain;
 
-import com.dongjae.skeleton_server.user.dto.MemberDto;
+import com.dongjae.skeleton_server.member.dto.MemberDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;

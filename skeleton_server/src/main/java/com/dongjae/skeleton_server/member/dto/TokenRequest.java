@@ -1,4 +1,4 @@
-package com.dongjae.skeleton_server.user.dto;
+package com.dongjae.skeleton_server.member.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,5 +6,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TokenRequest {
-    private String access_token;
+    private String accessToken;
 }
