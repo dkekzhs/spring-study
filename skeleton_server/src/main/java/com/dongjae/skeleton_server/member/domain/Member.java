@@ -17,26 +17,30 @@ public class Member {
     private Integer id;
 
     @Column
+    private String email;
+
+    @Column
+    private String type;
+
+    @Column
+    private String connect;
+    @Column
     private String name;
 
-    @Column
-    private String password;
-
-    @Column
-    private int age;
-
     @Builder
-    public Member(String name, String password, int age) {
-        this.name = name;
-        this.password = password;
-        this.age = age;
-    }
+    public Member(String email, String type, String connect, String name) {
 
+        this.email = email;
+        this.type = type;
+        this.connect = connect;
+        this.name = name;
+    }
 
     public MemberDto toDto(){
         return MemberDto.builder()
-                .userAge(age)
-                .userName(name)
+                .email(email)
+                .type(type)
+                .name(name)
                 .build();
     }
 }

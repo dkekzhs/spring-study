@@ -37,9 +37,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Member login(MemberDto memberDto) {
-        System.out.println(memberDto.getUserName());
-        System.out.println(memberDto.getUserPassword());
-        return memberRepository.findById(memberDto.getUserAge()).orElseThrow(() -> new BaseException(NOT_FOUND_USER));
+        return memberRepository.findById(0).orElseThrow(() -> new BaseException(NOT_FOUND_USER));
     }
 
     @Override

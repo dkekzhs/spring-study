@@ -41,7 +41,7 @@ public class securityConfig {
         http.authorizeHttpRequests((requests) -> requests
                         .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                         .requestMatchers(PathRequest.toH2Console()).permitAll()
-                        .requestMatchers("/", "/test/sign", "/js/**", "/css/**", "/img/**").permitAll()
+                        .requestMatchers("/", "/test/sign", "/js/**", "/css/**", "/img/**","/ranking/get").permitAll()
                         .anyRequest().authenticated()
                 )
                 .csrf(csrf -> csrf.ignoringRequestMatchers(PathRequest.toH2Console())
