@@ -25,7 +25,7 @@ public class RankingController {
         return new BaseResponse<>(BaseResponseStatus.SUCCESS, ranking);
     }
 
-    @PostMapping
+    @PostMapping("/update")
     public BaseResponse<?> updateRanking(@AuthenticationPrincipal Member member, @RequestBody RankingRequest rankingRequest){
         rankingService.updateRanking(member.toDto(), rankingRequest);
         return new BaseResponse<>(BaseResponseStatus.SUCCESS);
