@@ -10,7 +10,7 @@ import java.util.Map;
 
 public interface MemberService {
 
-    TokenResponse loginGoogle(TokenRequest tokenRequest);
+    MemberDto loginGoogle(TokenRequest tokenRequest);
 
     Member login(MemberDto memberDto) throws BaseException;
 

@@ -24,7 +24,8 @@ public class LoginController {
 
     @PostMapping("/google")
     public BaseResponse<?> handleGoogleToken(@RequestBody TokenRequest tokenRequest) {
-        return new BaseResponse<>(BaseResponseStatus.SUCCESS, tokenRequest);
+        TokenResponse tokenResponse = tokenProvider.googleLoginAndTokenCreate(tokenRequest);
+        return new BaseResponse<>(BaseResponseStatus.SUCCESS, tokenResponse);
     }
 
 
