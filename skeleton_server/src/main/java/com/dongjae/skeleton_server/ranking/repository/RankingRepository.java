@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface RankingRepository extends JpaRepository<Ranking, Long> {
 
@@ -18,4 +19,6 @@ public interface RankingRepository extends JpaRepository<Ranking, Long> {
             nativeQuery = true)
     List<Object[]> findTopRankings(@Param("limit") int limit, @Param("offset") int offset);
 
+
+    Optional<Ranking> findRankingByUserId(long userId);
 }

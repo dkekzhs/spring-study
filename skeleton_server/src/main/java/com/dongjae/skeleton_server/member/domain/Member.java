@@ -14,7 +14,7 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private long id;
 
     @Column
     private String email;
@@ -29,7 +29,6 @@ public class Member {
 
     @Builder
     public Member(String email, String type, String connect, String name) {
-
         this.email = email;
         this.type = type;
         this.connect = connect;
@@ -38,9 +37,11 @@ public class Member {
 
     public MemberDto toDto(){
         return MemberDto.builder()
+                .id(String.valueOf(id))
                 .email(email)
                 .type(type)
                 .name(name)
                 .build();
     }
+
 }

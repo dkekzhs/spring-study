@@ -22,4 +22,13 @@ public class Ranking {
     private int score;
 
 
+    public void updateScore(int score){
+        this.score = score;
+    }
+
+    @Builder
+    public Ranking(long userId, int score) {
+        this.userId = userId;
+        this.score = score;
+    }
 }

@@ -8,8 +8,6 @@ import com.dongjae.skeleton_server.member.dto.TokenResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
-
 @Service
 @RequiredArgsConstructor
 public class TokenProvider {
@@ -28,8 +26,8 @@ public class TokenProvider {
 
     public TokenResponse googleLoginAndTokenCreate(TokenRequest tokenRequest) {
         MemberDto memberDto = memberService.loginGoogle(tokenRequest);
-        String accessToken = jwtUtil.generateAccessToken(memberDto.getName());
-        String refreshToken = jwtUtil.generateRefreshToken(memberDto.getName());
+        String accessToken = jwtUtil.generateAccessToken(memberDto.getId());
+        String refreshToken = jwtUtil.generateRefreshToken(memberDto.getId());
         return TokenResponse.builder()
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
