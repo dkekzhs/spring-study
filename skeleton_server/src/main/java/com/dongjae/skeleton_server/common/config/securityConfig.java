@@ -41,11 +41,11 @@ public class securityConfig {
         http.authorizeHttpRequests((requests) -> requests
                         .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                         .requestMatchers(PathRequest.toH2Console()).permitAll()
-                        .requestMatchers("/", "/test/sign", "/js/**", "/css/**", "/img/**","/ranking/get").permitAll()
+                        .requestMatchers("/", "/test/google", "/js/**", "/css/**", "/img/**","/ranking/get").permitAll()
                         .anyRequest().authenticated()
                 )
                 .csrf(csrf -> csrf.ignoringRequestMatchers(PathRequest.toH2Console())
-                        .ignoringRequestMatchers("test/sign"))
+                        .ignoringRequestMatchers("test/google"))
                 .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .httpBasic(AbstractHttpConfigurer::disable)
