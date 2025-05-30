@@ -1,0 +1,5 @@
+spring:
+  application:
+    -name: kafka_main
+server:
+  port: 70
